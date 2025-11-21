@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Application definition
-
+HUGGINGFACE_API_KEY = "api-key"
 INSTALLED_APPS = [
     'summarizer',
     'django.contrib.admin',

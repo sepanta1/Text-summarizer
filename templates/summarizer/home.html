@@ -9,19 +9,19 @@
         <div class="card-body">
           <h4 class="card-title text-center mb-4">Enter Your Text</h4>
 
-          <form method="POST" id="textForm">
+          <form action='{% url "sum" %}' method="POST" id="textForm">
             {% csrf_token %}
             <div class="mb-3">
-              <label for="textInput" class="form-label">Your Text (max 1000 words)</label>
+              
               <textarea 
                 class="form-control" 
                 id="textInput" 
                 name="text" 
                 rows="16" 
                 placeholder="Paste or type your text here..."
-                required></textarea>
+                required>{{ form.text.value|default_if_none:'' }}</textarea>
               <div class="form-text text-end">
-                <span id="wordCount">0</span>/1000 words
+                <span id="wordCount">0</span>/500 words
               </div>
             </div>
 
@@ -35,29 +35,6 @@
   </div>
 </div>
 
-<!-- ✅ JavaScript for live word counting -->
-<script>
-  const textInput = document.getElementById("textInput");
-  const wordCountDisplay = document.getElementById("wordCount");
-  const submitBtn = document.getElementById("submitBtn");
-  const MAX_WORDS = 1000;
-
-  textInput.addEventListener("input", () => {
-    const words = textInput.value.trim().split(/\s+/).filter(Boolean);
-    const count = words.length;
-    wordCountDisplay.textContent = count;
-
-    // If word limit exceeded, disable submit button
-    if (count > MAX_WORDS) {
-      textInput.classList.add("is-invalid");
-      submitBtn.disabled = true;
-      wordCountDisplay.style.color = "red";
-    } else {
-      textInput.classList.remove("is-invalid");
-      submitBtn.disabled = false;
-      wordCountDisplay.style.color = "inherit";
-    }
-  });
-</script>
+<script src="{% static 'js/word_counter.js'%}"></script>
 
 {% endblock content %}
