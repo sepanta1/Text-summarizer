@@ -20,8 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 
+# ---- SESSIONS ----
+ACCOUNT_SESSION_REMEMBER = True
+
+# ---- PASSWORD RESET ----
+ACCOUNT_ALLOW_PASSWORD_RESET = False   # fully disables reset page
+
+
 # Application definition
-HUGGINGFACE_API_KEY = "apikey"
+HUGGINGFACE_API_KEY = "key"
 INSTALLED_APPS = [
     'summarizer',
     'django.contrib.admin',

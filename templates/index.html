@@ -37,14 +37,17 @@
 
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'account_signout' %}">SignOut</a>
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+                        <li class="nav-item">
+              <a class="nav-link" href="{% url "history" %}">History</a>
             </li>
             {% else %}
                         <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'account_signup' %}">SignUp</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'account_signup' %}">Signup</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">LogIn</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'account_login' %}">Login</a>
             </li>
             {% endif %}
           </ul>
@@ -52,6 +55,9 @@
       </div>
     </nav>
     {% comment %} nav-bar end {% endcomment %}
-    {% block content %}{% endblock content %}
+    {% block content %}
+   
+
+    {% endblock content %}
   </body>
 </html>

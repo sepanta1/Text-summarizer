@@ -5,14 +5,35 @@
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-lg-8 col-md-10">
+
       <div class="card shadow-lg">
         <div class="card-body">
+
+          <!-- Error Alert (Bootstrap) -->
+          {% if form.errors %}
+          <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+            <strong>Error:</strong><br>
+
+            {% for field in form %}
+              {% for error in field.errors %}
+                {{ error }} <br>
+              {% endfor %}
+            {% endfor %}
+            
+            {% for error in form.non_field_errors %}
+              {{ error }} <br>
+            {% endfor %}
+
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+          </div>
+          {% endif %}
+
           <h4 class="card-title text-center mb-4">Enter Your Text</h4>
 
-          <form action='{% url "sum" %}' method="POST" id="textForm">
+          <form action="{% url 'sum' %}" method="POST" id="textForm">
             {% csrf_token %}
             <div class="mb-3">
-              
+
               <textarea 
                 class="form-control" 
                 id="textInput" 
@@ -20,6 +41,7 @@
                 rows="16" 
                 placeholder="Paste or type your text here..."
                 required>{{ form.text.value|default_if_none:'' }}</textarea>
+
               <div class="form-text text-end">
                 <span id="wordCount">0</span>/500 words
               </div>
@@ -29,12 +51,14 @@
               <button type="submit" class="btn btn-primary" id="submitBtn">Summarize</button>
             </div>
           </form>
+
         </div>
       </div>
+
     </div>
   </div>
 </div>
 
-<script src="{% static 'js/word_counter.js'%}"></script>
-
+<script src="{% static 'js/word_counter.js' %}"></script>
+<script src="{% static 'js/message_fade.js' %}"></script>
 {% endblock content %}
