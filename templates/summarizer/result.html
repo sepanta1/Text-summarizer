@@ -1,27 +1,12 @@
 {% extends "index.html" %} {% load static %} {% block content %}
-{% if messages%}
-    {% for message in messages %}
-        <div
-        class="alert alert-{{ message.tags }} alert-dismissible fade show mt-2"
-        role="alert"
-        >
-        {{ message }}
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="alert"
-            aria-label="Close"
-        ></button>
-        </div>
-    {% endfor %}
-{% endif %}
+
 <div class="container mt-5">
   <h2>Generated Summary</h2>
 
   <!-- Summary Text -->
   <div class="mb-3">
     <label for="summary" class="form-label">Summary:</label>
-    <textarea class="form-control" id="summary" rows="6" readonly>
+    <textarea class="form-control" id="summary" rows="8" readonly>
 {{ summary }}</textarea
     >
   </div>
@@ -29,16 +14,16 @@
   <!-- Original Text (optional display) -->
   <div class="mb-3">
     <label for="original" class="form-label">Original Text:</label>
-    <textarea class="form-control" id="original" rows="6" readonly>
+    <textarea class="form-control" id="original" rows="8" readonly>
 {{ original_text }}</textarea
     >
   </div>
 
   <!-- Buttons -->
-  <div class="d-flex justify-content-between">
-    
-    <a href="{% url 'sum' %}" class="btn btn-primary">New Summary</a>
-  </div>
+<div class="d-flex justify-content-center mt-3">
+  <a href="{% url 'sum' %}" class="btn btn-primary px-4">New Summary</a>
 </div>
-<script src="{% static 'js/message_fade.js'%}"></script>
+
+</div>
+
 {% endblock %}

@@ -19,16 +19,49 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
+# ---------------------------------------
+# DJANGO ALLAUTH CONFIGURATION
+# ---------------------------------------
 
-# ---- SESSIONS ----
+# Remember user sessions across browser close
 ACCOUNT_SESSION_REMEMBER = True
 
-# ---- PASSWORD RESET ----
-ACCOUNT_ALLOW_PASSWORD_RESET = False   # fully disables reset page
+# Disable password reset functionality completely
+ACCOUNT_ALLOW_PASSWORD_RESET = False
+
+# ---------------------------------------------------
+# LOGIN METHODS (New recommended setting)
+# Allows login using username OR email OR both
+# ---------------------------------------------------
+ACCOUNT_LOGIN_METHODS = {"username", "email"}
+
+# ---------------------------------------------------
+# SIGNUP FIELDS (New recommended setting)
+# Fields with "*" are required
+# This replaces ACCOUNT_EMAIL_REQUIRED and ACCOUNT_USERNAME_REQUIRED
+# ---------------------------------------------------
+ACCOUNT_SIGNUP_FIELDS = [
+    "email*",       # required email
+    "username*",    # required username
+    "password1*",   # required password fields
+    "password2*",
+]
+
+# ---------------------------------------------------
+# EMAIL VERIFICATION
+# "none" means: do not require email confirmation
+# ---------------------------------------------------
+ACCOUNT_EMAIL_VERIFICATION = "none"
+
+# ---------------------------------------------------
+# Enforce unique email addresses (recommended)
+# ---------------------------------------------------
+ACCOUNT_UNIQUE_EMAIL = True
+
 
 
 # Application definition
-HUGGINGFACE_API_KEY = "key"
+HUGGINGFACE_API_KEY = "apikey"
 INSTALLED_APPS = [
     'summarizer',
     'django.contrib.admin',
