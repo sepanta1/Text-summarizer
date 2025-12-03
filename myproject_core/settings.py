@@ -15,53 +15,40 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SITE_ID = 1  
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
-# ---------------------------------------
 # DJANGO ALLAUTH CONFIGURATION
-# ---------------------------------------
-
 # Remember user sessions across browser close
 ACCOUNT_SESSION_REMEMBER = True
 
 # Disable password reset functionality completely
 ACCOUNT_ALLOW_PASSWORD_RESET = False
 
-# ---------------------------------------------------
 # LOGIN METHODS (New recommended setting)
 # Allows login using username OR email OR both
-# ---------------------------------------------------
 ACCOUNT_LOGIN_METHODS = {"username", "email"}
 
-# ---------------------------------------------------
 # SIGNUP FIELDS (New recommended setting)
 # Fields with "*" are required
 # This replaces ACCOUNT_EMAIL_REQUIRED and ACCOUNT_USERNAME_REQUIRED
-# ---------------------------------------------------
 ACCOUNT_SIGNUP_FIELDS = [
-    "email*",       # required email
-    "username*",    # required username
-    "password1*",   # required password fields
+    "email*",       
+    "username*",    
+    "password1*",   
     "password2*",
 ]
 
-# ---------------------------------------------------
 # EMAIL VERIFICATION
-# "none" means: do not require email confirmation
-# ---------------------------------------------------
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
-# ---------------------------------------------------
-# Enforce unique email addresses (recommended)
-# ---------------------------------------------------
+# Enforce unique email addresses 
 ACCOUNT_UNIQUE_EMAIL = True
 
+#END OF DJANGO ALLAUTH CONFIGURATION
 
 
 # Application definition
-HUGGINGFACE_API_KEY = "apikey"
 INSTALLED_APPS = [
     'summarizer',
     'django.contrib.admin',
@@ -81,7 +68,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    "allauth.account.middleware.AccountMiddleware",  # new
+    "allauth.account.middleware.AccountMiddleware", 
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -107,12 +94,11 @@ WSGI_APPLICATION = 'myproject_core.wsgi.application'
 
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
-    "allauth.account.auth_backends.AuthenticationBackend",  # new
+    "allauth.account.auth_backends.AuthenticationBackend", 
 ]
 
-SITE_ID = 1  # new
 
-ACCOUNT_EMAIL_VERIFICATION = "none"  # new
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -145,11 +131,18 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# Media / Static
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "statics",
+]
 
-STATIC_URL = 'static/'
+# Authentication redirects
+LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
