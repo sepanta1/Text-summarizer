@@ -69,3 +69,5 @@ export HUGGINGFACE_API_KEY="your-hf-key"
 ```
 * Configure PostgreSQL
 
+> [!TIP]
+> If you're new to Django deployment, follow this official guide: https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
