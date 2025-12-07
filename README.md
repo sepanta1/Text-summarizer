@@ -1,9 +1,11 @@
 # Text Summarizer – Django Project
 
 A simple but powerful AI text-summarization web app built with Django, the HuggingFace Inference API, and django-allauth for authentication.
-
 Users can enter text, receive an AI-generated summary, and view their personal summary history when logged in.
 
+![image alt](https://github.com/sepanta1/Text-summarizer/blob/main/main_page.png?raw=true)
+![image alt](https://github.com/sepanta1/Text-summarizer/blob/main/summary_page.png?raw=true)
+![image alt](https://github.com/sepanta1/Text-summarizer/blob/main/history_page.png?raw=true)
 # Features
 * AI Text Summarization
   * Uses HuggingFace InferenceClient for high-quality English summaries.
